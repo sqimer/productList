@@ -25,9 +25,16 @@ const useForm = (callback, validate) => {
     }));
   };
 
+  const focusAfterError = (event) => {
+    if (errors !== {} && isSubmitting === true) {
+      errors[event.target.name] = "";
+    }
+  };
+
   return {
     handleChange,
     handleSubmit,
+    focusAfterError,
     values,
     errors,
   };

@@ -19,10 +19,8 @@ import useForm from "../../useForm";
 import validate from "../../validate";
 
 const ModalWindow = ({ prodList, text }) => {
-  const { values, errors, handleChange, handleSubmit } = useForm(
-    submitData,
-    validate
-  );
+  const { values, errors, handleChange, handleSubmit, focusAfterError } =
+    useForm(submitData, validate);
 
   function submitData() {
     console.log(`${values.name} - ${values.phone}`);
@@ -53,6 +51,7 @@ const ModalWindow = ({ prodList, text }) => {
                 value={values.name || ""}
                 required
                 onChange={handleChange}
+                onFocus={focusAfterError}
               />
               {errors.name && <ErrorMessage>{errors.name}</ErrorMessage>}
 
@@ -65,6 +64,7 @@ const ModalWindow = ({ prodList, text }) => {
                 value={values.phone || ""}
                 required
                 onChange={handleChange}
+                onFocus={focusAfterError}
               />
               {errors.phone && <ErrorMessage>{errors.phone}</ErrorMessage>}
 
